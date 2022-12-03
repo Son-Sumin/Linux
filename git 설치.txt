@@ -1,0 +1,63 @@
+<<<git 설치>>>
+  *Xshell5에서 설치
+
+1. 의존성 라이브러리
+   # yum install -y curl-devel
+   # yum install -y expat-devel
+   # yum install -y gettext-devel
+   # yum install -y openssl-devel
+   # yum install -y zlib-devel
+   # yum install -y perl-devel
+
+2. 다운로드
+   # wget https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.9.5.tar.gz
+
+3. 압축 풀기
+  # tar xvfz git-2.9.5.tar.gz
+
+4.소스 디렉토리
+  # cd git-2.9.5
+  # pwd
+
+5. configure
+  # ./configure --prefix=/usr/local/bitacademy/git
+  # make
+
+6. 빌드
+  # make all
+   
+7. 설치
+  # make install
+
+8. 설정(/etc/profile)
+# git
+export PATH=$PATH:/usr/local/bitacademy/git/bin
+8-1. 설정 적용
+  # source /etc/profile
+
+9. git 환경 설정
+# git config --global user.name "douzone-busan-bitacademy"
+# git config --global user.email "douzone.busan.bitacademy@gmail.com"
+
+10. git 사용하기
+# mkdir centos-practices
+# cd centos-practices
+# git init
+# git add -A
+# git commit -m "first commit"
+# git remote add origin https://github.com/douzone-busan-bitacademy/centos-practices.git
+# git push -u origin master
+
+================
+# git add -A
+# git commit -m "...."
+# git push 
+
+
+=========================================================
+
+* /dowork 디렉토리에 기존에 존재한 메이븐 프로젝트 실행하기
+/dowork
+# git clone https://github.com/douzone-busan-bitacademy/javastudy.git
+# cd javastudy
+# mvn clean package
