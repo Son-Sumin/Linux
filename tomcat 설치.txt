@@ -1,4 +1,5 @@
 <<tomcat9 설치>>
+  * Xshell에서 설치
 
 1. tomcat9 download 
    구글에서 tar 링크주소 복사
