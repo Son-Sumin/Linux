@@ -1,0 +1,71 @@
+<<java12 설치>>
+
+1. Xshell5 새 창 열기 
+java 파일은 wget 지원 안되서 local 저장소와 연결하여 java.tar.gz 가져오기
+java12 download - linux .tar 다운 후 C드라이브로 옮기기
+  # cd c:\
+  # sftp root@192.168.0.99
+  # put jdk-12.0.2_linux-x64_bin.tar.gz
+
+2. 작업은 /root
+
+3. /root 확인
+  # ls -l 
+
+4. 압축 풀기 및 확인
+  # tar xvfz jdk-12.0.2_linux-x64_bin.tar.gz
+  # ls -l 
+
+5. bitacademy 디렉토리 만들기
+mkdir /usr/local/bitacademy
+
+6. 파일 옮기기
+  # mv jdk-12.0.2 /usr/local/bitacademy/java12
+
+7. java path 및 위치 지정
+  # vi /etc/profile
+export JAVA_HOME=/usr/local/bitacademy/java12
+export CLASSPATH=$JAVA_HOME/lib
+export PATH=$PATH:$JAVA_HOME/bin
+
+8. 현재 shell 환경에 적용하기
+  # sourcr /etc/profile
+
+9. 확인
+   # java --version
+
+****
+0. java complie 하기
+# mkdir dowork
+# cd dowork/
+# mkdir java
+# cd java
+# vi HelloWorld.java
+public class HelloWorld {
+ 	public static void main(String[] args) {
+		System.out.println("Hello world");
+	}
+}
+# javac HelloWorld.java
+# java -cp . HelloWorld
+# java -cp ./ HelloWorld
+
+****
+0. c언어 complie 하기
+c언어는 컴파일과 링크과정이 존재함
+hello.c -> hello.o(Object 파일) -> hello(실행파일)  
+(자바는 클래스 파일 생성만 해주면 자바가 실행, C는 OS가 실행시켜줌)
+
+# cd dowork/
+# mkdir c
+# cd c
+# vi hello.c
+#include <stdio.h>
+
+int main() {
+	printf("Hello World\n");
+	return 0;
+}
+# gcc -c hello.c
+# gcc -o hello hello.o
+# ./hello
