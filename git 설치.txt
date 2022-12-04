@@ -55,7 +55,7 @@ export PATH=$PATH:/usr/local/bitacademy/git/bin
 
 
 =========================================================
-
+* 먼저 mavan 설치 필요
 * /dowork 디렉토리에 기존에 존재한 메이븐 프로젝트 실행하기
 /dowork
 # git clone https://github.com/douzone-busan-bitacademy/javastudy.git
