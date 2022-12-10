@@ -1,0 +1,111 @@
+## 1206
+
+<<mysite04 배포>>
+(메이븐 프로젝트(war))
+
+* 이클립스
+ - pom; servlet dependency, org.apache.tomcat.maven lib plugin추가
+ - jdbc.properties; ip 수정
+
+* jenkins
+새아이템 mysite04 만들기
+-f mysite04 clean package tomcat7:redeploy -Pproduction
+
+* 서버 접속
+http://192.168.0.107:8080/mysite04 확인
+
+* Xshell 확인
+ # cd /usr/local/bitacademy/tomcat/webapps 
+
+--------------------------------------------------------------------------
+
+<<spring-practices 배포>>
+(메이븐 프로젝트(war+jar))
+(servlet-practices 배포시 참고)
+
+* 이클립스
+ - jar pom; 수정 없음
+ - test 있는 jar pom; maven-surefire-plugin 추가 (test하지 않을 시 수정 없음)
+ - war pom; servlet dependency 추가, repo ip 수정
+ - super pom; org.apache.tomcat.maven lib plugin추가
+
+* jenkins
+새아이템 spring-practices 만들기
+
+원래 test 파일이 있을 경우 test 후 빌드한다
+방법1: test skip → 빌드
+clean package tomcat7:redeploy -Pproduction -Dmaven.test.skip=true
+
+방법2: test → 빌드
+clean package tomcat7:redeploy -Pproduction
+이클립스 test 있는 프로젝트 pom(container pom)에 내용 추가
+
+
+* 서버 접속
+http://192.168.0.107:8080/spring-practices 확인
+
+* Xshell 확인
+ * war
+ # cd /usr/local/bitacademy/tomcat/webapps 
+ * jar
+ # cd /root/.jenkins/workspace/spring-practices/aoptest/target/aoptest.jar
+
+
+- 전통적으로 target 아래 jar 생성됨
+실행할 때(라이브러리 추가해야함)
+ # java -cp ./aoptest.jar com.bitacademy.aoptest.main.MainApp
+
+- jar 리스트 보고 싶으면
+ # jar -h
+ # jar -tf aoptest.jar
+
+war를 실행시키려면 tomcat 필요 -> 배포를 위해서는 war 사용
+jsp때문에 원래 안되는 것이 맞지만 이클립스에서는 jar임에도 실행됨.
+주의하고 배포할 때는 jar → war로 바꿔줘야함
+
+--------------------------------------------------------------------------
+
+<<mysite05 배포>>
+(메이븐 프로젝트(war))
+
+그 전에 mysite04의 web.xml을 없애고 MySiteWebApplicationInitializerclass로 생성하는 연습하기 위해 mysite05 → mysite06
+이클립스 내에서 프로젝트 이름 바꾸지 말기
+이클립스 내 파일 없애고, 다시 import
+
+* 이클립스
+ - pom; servlet dependency, org.apache.tomcat.maven lib plugin추가
+ - jdbc.properties; ip 수정
+ - MySiteWebApplicationInitializer class 생성
+ - MVCConfig.java; @Override addResourceHandlers 추가, @Override  - configureDefaultServletHandling 삭제
+ - ControllerExceptionHandler.jave; 404 Error 처리 추가
+ - web.xml 삭제
+
+* jenkins
+새아이템 mysite05만들기
+-f mysite05 clean package tomcat7:redeploy -Pproduction
+
+* 서버 접속
+http://192.168.0.107:8080/mysite05 확인
+
+* Xshell 확인
+ # cd /usr/local/bitacademy/tomcat/webapps 
+
+--------------------------------------------------------------------------
+
+<<mysite06 배포>>
+(메이븐 프로젝트(war))
+ 
+* 이클립스
+ - pom; org.apache.tomcat.maven lib plugin추가, 기존 plugin 삭제
+ - jdbc.properties; ip 수정
+ - com.bitacademy.mysite.BootInitializer.java 생성
+
+* jenkins
+새아이템 mysite06만들기
+-f mysite06 clean package tomcat7:redeploy -Pproduction
+
+* 서버 접속
+http://192.168.0.107:8080/mysite06 확인
+
+* Xshell 확인
+ # cd /usr/local/bitacademy/tomcat/webapps 
