@@ -1,40 +1,42 @@
 <<tomcat9 설치>>
   * Xshell에서 설치
 
-1. tomcat9 download 
+0. tomcat9 download 
    구글에서 tar 링크주소 복사
+    (작업은 /root)
 
-2. 작업은 /root
-
-3. tomcat9.tar 설치 및 확인
+1. tomcat9.tar 다운로드
    # wget tomcat9.tar 링크주소
-  # ls -l 
+   # ls -l 
 
-4. 압축 풀기 및 확인
+2. 압축 풀기
   # tar xvfz apache-tomcat-9.0.69.tar.gz
   # ls -l 
 
-5. 파일 옮기기
+3. 설치(파일 옮기기)
   # mv apache-tomcat-9.0.69 /usr/local/bitacademy/tomcat9
 
-6포트 확인
+4. 설정(/etc/profile, 생략)
+
+5. 포트 확인
    # vi /usr/local/bitacademy/tomcat/conf/server.xml
    8080 open 확인
 
-7. tomcat 실행 및 실행 확인
+6. tomcat 실행 및 실행 확인
   # /usr/local/bitacademy/tomcat9/bin/catalina.sh start
   # ps -ef | grep tomcat
   # ps -ef | grep java
 
-8. 브라우저 접근 
+7. 브라우저 접근 (리눅스ip 활용)
 192.168.136.117:8080
+-> tomcat 실행되는지 확인
 
-9. 실행 안되면 방화벽 확인 후 해제 및 해제 유지
+8. 실행 안되면 방화벽 확인 후 해제 및 해제 유지
   # ps -ef | grep firewall
   # systemctl stop firewalld
   # systemctl disable firewalld
 
-10. tomcat 실행 중지 및 확인
+9. tomcat 실행 중지 및 확인
   # /usr/local/bitacademy/tomcat/bin/catalina.sh stop
   # ps -ef | grep tomcat
   # ps -ef | grep java
@@ -42,7 +44,7 @@
 cf) 필터링 과정, 한줄씩 훑으면서 tomcat 명령어 유무 확인 후 있으면 실행
       ps -ef | grep tomcat
 
-11. 서비스 등록 하기
+10. 서비스 등록 하기
   # /usr/lib/systemd/system/tomcat.service 파일 생성
 
 ** 파일 생성 규칙**
@@ -69,12 +71,16 @@ WantedBy=multi-user.target
 
  # systemctl enable tomcat.service
 
-12. tomcat 서비스 실행/중지/재실행
+11. tomcat 서비스 실행/중지/재실행
    # systemctl start tomcat
    # systemctl stop tomcat
    # systemctl restart tomcat
 
-13. tomcat manager 설정
+
+<><><><><><><><><><><><><><><><><><><><><><><><><>
+mariadb설치.txt 참고
+
+12. tomcat manager 설정
    1) tomcat-users.xml 설정
       # vi /usr/local/bitacademy/tomcat/conf/tomcat-users.xml
 
@@ -107,9 +113,9 @@ WantedBy=multi-user.target
 
 ========================================================
 
-14. tomcat 재시작
+13. tomcat 재시작
     # systemctl stop tomcat
     # ps -ef | grep tomcat
     # systemctl start tomcat
 
-15. http://192.168.0.107/manager
+14. http://192.168.0.107/manager
