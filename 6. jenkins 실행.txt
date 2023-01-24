@@ -1,42 +1,50 @@
-<<jenkins 실행>>
+## jenkins 실행
+<br>
 
-1. jenkins download googling
-  LTS war 버전 링크 주소 복사
+1. [jenkins download](https://www.jenkins.io/download/)   
+   LTS : Generic Java package (.war) 우클릭 > 링크 주소 복사   
+<br>
 
-2. 소스 다운로드, 이동 후 확인
-  # wget 링크 주소
-  # cp jenkins.war /usr/local/bitacademy/tomcat/webapps
-  # ls -l /usr/local/bitacademy/tomcat/webapps
-  - 192.168.0.107:8080/jenkins 접속해보기
+2. 소스 다운로드, 이동 후 확인   
+  #wget 링크 주소   
+  #cp jenkins.war /usr/local/bitacademy/tomcat/webapps   
+  #ls -l /usr/local/bitacademy/tomcat/webapps   
+   - 192.168.0.107:8080/jenkins 접속해보기   
+<br>
 
-접속 안되면
-  # cd /usr/local/bitacademy/java/lib
-  # vi fontconfig.properties (아래 내용 추가)
-version=1
-sequence.allfonts=default
+접속 안되면   
+  #cd /usr/local/bitacademy/java/lib   
+  #vi fontconfig.properties (아래 내용 추가)   
+```
+version=1   
+sequence.allfonts=default   
+```
+<br>
 
-3. tomcat 중지, 실행
-  # systemctl stop tomcat
-  # ps -ef | grep tomcat
-  # systemctl start tomcat
-  # ps -ef | grep tomcat
+3. tomcat 중지, 실행   
+  #systemctl stop tomcat   
+  #ps -ef | grep tomcat   
+  #systemctl start tomcat   
+  #ps -ef | grep tomcat   
+<br>
 
-4. jenkins 최초 접속
-  # cd .jenkins/
-  # cd secrets
-  # cat initialAdminPassword
-  - suggested install하기
+4. jenkins 최초 접속   
+  #cd .jenkins/   
+  #cd secrets   
+  #cat initialAdminPassword   
+   - suggested install하기   
+<br>
 
-5. jenkins 계정 생성 및 초기 설정
-  - 계정명: jenkins (원하는대로)
-  - 이름: 한글로 (가능한)
+5. jenkins 계정 생성 및 초기 설정   
+  - 계정명: jenkins (원하는대로)   
+  - 이름: 한글로 (가능한)   
 
-좌측 배너 -> jenkins 관리 -> global tool configuration
-① add JDK
-name : java12  (설치한 버전에 맞게)
-install auto unchk
-java home; /usr/local/bitacademy/java (Xshell 확인)
-apply!
+좌측 배너 -> jenkins 관리 -> global tool configuration   
+① add JDK   
+name : java12  (설치한 버전에 맞게)   
+install auto unchk   
+java home; /usr/local/bitacademy/java (Xshell 확인)   
+apply!   
 
 ② add git
 name: git1.8  (설치한 버전에 맞게)
@@ -49,7 +57,7 @@ install auto unchk
 maven home: /usr/local/bitacademy/maven3.8
 apply!
 save!
-
+<br>
 
 6. jenkins에 기존 git 내용들 연동
 ** mysite03 - jenkins로 옮기기
@@ -72,6 +80,7 @@ mvn version: maven3.8 (설치한 버전에 맞게)
 
 mvn version: maven3.8
 goals: -f mysite03 clean package tomcat7:redeploy 
+<br>
 
 
 **  jblog03 - jenkins로 옮기기
